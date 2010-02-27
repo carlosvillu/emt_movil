@@ -3,8 +3,8 @@
 	<fieldset>
 		<%- @tiempos.each do |tiempo| -%>
 			<div class="row">
-				<label>Línea <%=tiempo["linea"]%></label
-				<input type="text" name="userName" value="<%=tiempo["tiempo"]%> minutos" disabled/>
+				<label>Línea <%=tiempo["linea"]%></label>
+				<input type="text" name="userName" value="<%=tiempo["tiempo"]%> minutos" />
 			</div>
 		<%- end -%>
 	</fieldset>
