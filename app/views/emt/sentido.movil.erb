@@ -1,0 +1,5 @@
+<ul id="sentidos" title="Sentidos" selected="true">
+	<%- @sentidos.each do |sentido| -%>
+		<li><%= link_to "#{sentido["nombre"]}", :action => "parada", :id => "#{sentido["id"]}" %></li>
+	<%- end -%> 
+</ul>

@@ -1,0 +1,11 @@
+<div class="panel" title="Tiempos" id="tiempo">
+	<h2>Líneas de la parada</h2>
+	<fieldset>
+		<%- @tiempos.each do |tiempo| -%>
+			<div class="row">
+				<label>Línea <%=tiempo["linea"]%></label
+				<input type="text" name="userName" value="<%=tiempo["tiempo"]%> minutos" enable="false" disabled/>
+			</div>
+		<%- end -%>
+	</fieldset>
+</div>

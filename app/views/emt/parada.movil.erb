@@ -1,0 +1,5 @@
+<ul id="paradas" title="Paradas" selected="true">
+	<%- @paradas.each do |parada| -%>
+		<li><%= link_to "#{parada["nombre"]}", :action => "tiempo", :id => "#{parada["id"]}" %></li>
+	<%- end -%> 
+</ul>

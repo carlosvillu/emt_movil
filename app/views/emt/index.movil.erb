@@ -1,0 +1,5 @@
+<ul id="lineas" title="lineas" selected="true">
+	<%- @lineas.each do |linea| -%>
+		<li><%= link_to "#{linea["nombre"]}", :action => "sentido", :id => "#{linea["id"]}" %></li>
+	<%- end -%> 
+</ul>

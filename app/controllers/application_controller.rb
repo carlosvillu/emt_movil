@@ -4,7 +4,14 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  
+  before_filter :movil?
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+  
+  private
+  def movil?
+    request.format = :movil if  request.user_agent =~ /Mobile|webOS/ && !request.xhr?
+  end
 end
