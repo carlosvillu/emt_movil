@@ -55,7 +55,7 @@ class EmtController < ApplicationController
      lis = doc.search("li")
      tiempos = []
      lis.each do |li|
-       m = /.*\s+(\d*)\s+:\s+(\d*)\w*/.match( li.to_plain_text)
+       m = /.*\s+(\w?\d*)\s+:\s+(\+?\d*)\w*/.match( li.to_plain_text)
        puts "li => #{li.to_plain_text}"
        puts "Match = #{m}"
        puts "m[1] => #{m[1]}"
