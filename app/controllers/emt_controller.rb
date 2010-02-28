@@ -55,9 +55,15 @@ class EmtController < ApplicationController
      lis = doc.search("li")
      tiempos = []
      lis.each do |li|
-       m = /.* (\d*) : (\d*) \w*/.match( li.to_plain_text)
+       m = /.*\s+(\d*)\s+:\s+(\d*)\w*/.match( li.to_plain_text)
+       puts "li => #{li.to_plain_text}"
+       puts "Match = #{m}"
+       puts "m[1] => #{m[1]}"
+       puts "m[2] => #{m[2]}"
        tiempos <<  {"linea" => m[1], "tiempo" => m[2]}
      end
+     puts parametros_consulta
+     puts tiempos.inspect
      return tiempos
   end
 end
