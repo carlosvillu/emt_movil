@@ -13,6 +13,7 @@ class EmtController < ApplicationController
     @lineas = listado "idLinea"
   end
   
+  # Muestra un listado de todos los sentidos de la linea
   def sentido
     session[:linea] = params[:id]
     @sentidos = listado "idSentido", {"idLinea" => params[:id]}
@@ -21,6 +22,7 @@ class EmtController < ApplicationController
     end
   end
   
+  # Muestra un listado de las paradas del autobus, en ese sentido
   def parada
     session[:sentido] = params[:id]
     @paradas = listado "idParada", {"idLinea" => session[:linea], "idSentido" => params[:id]}
@@ -29,6 +31,7 @@ class EmtController < ApplicationController
     end
   end
   
+  # Presenta los tiempo que van a tardar los autobuses que paran en esa parada
   def tiempo
     session[:parada] = params[:id]
     @tiempos = obtener_tiempos "lineacuad", {"idLinea" => session[:linea], "idSentido" => session[:sentido], "idParada" => params[:id]}
@@ -38,6 +41,9 @@ class EmtController < ApplicationController
   end
 
   private
+  
+  # Pasandole el 'name' de un atributo select, y después de realizar una consulata a la EMT con los parámetros pasado,
+  # parsea el HTML para obtener el listado de 'options' que conforman ese select.
   def listado select, parametros_consulta={}
     res = Net::HTTP.post_form(URI.parse(URL_EMT), parametros_consulta)
     doc = Hpricot(res.body)
@@ -49,6 +55,8 @@ class EmtController < ApplicationController
     return lineas
   end
   
+  # Con todos los parámetros necesarios para realizar una consulta, se parsea el HTML y se obtiene el listado de tiempos de los autobuses que van
+  # a parar en la parada seleccionada
   def obtener_tiempos listado, parametros_consulta={}
      res = Net::HTTP.post_form(URI.parse(URL_EMT), parametros_consulta)
      doc = Hpricot(res.body)

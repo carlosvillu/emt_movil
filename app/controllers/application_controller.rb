@@ -11,6 +11,9 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
   private
+  
+  # Si es un dispositivo móvil, el formato de respuesta cambia
+  # de esta forma nos ahoramos tener que usar subdominios para la misma funcionalidad.
   def movil?
     request.format = :movil if  request.user_agent =~ /Mobile|webOS/ && !request.xhr?
   end
